@@ -18,7 +18,7 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:3000',
+        url: 'https://backclinica.azurewebsites.net/api-docs/#/Authentication/post_api_auth_login',
         description: 'Servidor de desarrollo'
       }
     ],
