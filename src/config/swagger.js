@@ -18,7 +18,7 @@ const options = {
     },
     servers: [
       {
-        url: 'https://backclinica.azurewebsites.net/api-docs/#/Authentication/post_api_auth_login',
+        url: 'https://backclinica.azurewebsites.net',
         description: 'Servidor de desarrollo'
       }
     ],
