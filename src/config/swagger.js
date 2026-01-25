@@ -25,7 +25,7 @@ const options = {
     components: {
       securitySchemes: {
         bearerAuth: {
-          type: 'http',
+          type: 'https',
           scheme: 'bearer',
           bearerFormat: 'JWT',
           description: 'Ingresa el token JWT obtenido del login'
