@@ -9,7 +9,7 @@ const options = {
       description: 'API REST desarrollada con Node.js, Express y JWT para autenticación de usuarios',
       contact: {
         name: 'API Support',
-        email: 'support@example.com'
+        email: 'sergiocarrilloespejo@gmail.com'
       },
       license: {
         name: 'ISC',
