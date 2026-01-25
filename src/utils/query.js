@@ -12,6 +12,7 @@ const sqlConfigWeb = {
     enableArithAbort: true
   }
 };
+
  /* CONFIGURADCION 2022 */
  /* const sqlConfigWeb = {
   user: 'sa',
