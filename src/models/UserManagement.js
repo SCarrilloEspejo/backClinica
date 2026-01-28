@@ -125,6 +125,7 @@ class UserManagement {
     const query = "SELECT id, name, surname, secondSurname, phone, movil, email, color, admin "
     query = query + "where name like '%" + txtSearch + "%' or surname like '%" + txtSearch + "%' or secondSurname like '%" + txtSearch + "%' or phone like '%" + txtSearch + "%' or movil like '%" + txtSearch + "%' or email like '%" + txtSearch + "%'  ";
     query = query + "FROM users ORDER BY id DESC";
+conse.info(query)
     const result = await Query.myQueryWeb(query);
     
     return result.recordset || [];
