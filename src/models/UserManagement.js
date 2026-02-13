@@ -122,12 +122,10 @@ class UserManagement {
    * @returns {Array} Lista de usuarios
    */
   static async findAll(txtSearch) {
-    let query = "SELECT id, name, surname, secondSurname, phone, movil, email, color, admin FROM users ";
-    if (txtSearch && txtSearch.trim() !== '') {
-      const s = txtSearch.replace(/'/g, "''");
-      query += "WHERE name LIKE '%" + s + "%' OR surname LIKE '%" + s + "%' OR secondSurname LIKE '%" + s + "%' OR phone LIKE '%" + s + "%' OR movil LIKE '%" + s + "%' OR email LIKE '%" + s + "%' ";
-    }
-    query += "ORDER BY id DESC";
+    const query = "SELECT id, name, surname, secondSurname, phone, movil, email, color, admin "
+    query = query + "where name like '%" + txtSearch + "%' or surname like '%" + txtSearch + "%' or secondSurname like '%" + txtSearch + "%' or phone like '%" + txtSearch + "%' or movil like '%" + txtSearch + "%' or email like '%" + txtSearch + "%'  ";
+    query = query + "FROM users ORDER BY id DESC";
+conse.info(query)
     const result = await Query.myQueryWeb(query);
 
     return result.recordset || [];
