@@ -6,6 +6,9 @@ const swaggerSpec = require('./config/swagger');
 const authRoutes = require('./routes/auth.routes');
 const clientRoutes = require('./routes/client.routes');
 const userRoutes = require('./routes/user.routes');
+const typologyRoutes = require('./routes/typology.routes');
+const appointmentRoutes = require('./routes/appointment.routes');
+const paymentRoutes = require('./routes/payment.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,6 +28,9 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
 app.use('/api/auth', authRoutes);
 app.use('/api/clients', clientRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/tipologias', typologyRoutes);
+app.use('/api/appointments', appointmentRoutes);
+app.use('/api/formas-pago', paymentRoutes);
 
 // Ruta de prueba
 app.get('/', (req, res) => {

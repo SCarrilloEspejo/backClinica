@@ -87,6 +87,7 @@ async function myQueryWeb(strsql) {
     return result;
   } catch (error) {
     console.error('Error in myQuery:', error, 'myQuery ->', strsql);
+    throw error;
   }
 }
 

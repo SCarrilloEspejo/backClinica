@@ -144,14 +144,15 @@ class Client {
            OR obs LIKE '%${search}%'
         ORDER BY id DESC
       `;
-      console.log('Query de búsqueda:', query);
+      console.log('Query de búsqueda: IF', query);
     } else {
       // Sin filtro, traer todos
       query = `SELECT * FROM customers ORDER BY id DESC`;
+      console.log('Query de búsqueda else:', query);
     }
     
     const result = await Query.myQueryWeb(query);
-    
+    console.log('Clientes encontrados:', result.recordset);
     return result.recordset || [];
   }
 

@@ -158,8 +158,13 @@ class UserService {
    * @returns {Array} Lista de usuarios
    */
   async getAllUsers(txtSearch) {
+    console.log('1');
     try {
+      console.log('2');
+      console.log('txtSearch recibido en getAllUsers:', txtSearch);
       const users = await UserManagement.findAll(txtSearch);
+      console.log('3');
+      console.log('Usuarios encontrados:', users);
       return users;
     } catch (error) {
       console.error('Error al obtener usuarios:', error);

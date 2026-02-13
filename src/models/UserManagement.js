@@ -16,7 +16,7 @@ class UserManagement {
     const query = `
       INSERT INTO users (name, surname, secondSurname, phone, movil, email, color, admin, password)
       OUTPUT INSERTED.id
-      VALUES ('${name}', '${surname}', '${secondSurname || ''}', '${phone}', '${movil}', '${email}', '${color}', ${admin ? 1 : 0}, '${password}')
+      VALUES ('${name}', '${surname}', '${secondSurname || ''}', '${phone}', '${movil}', '${email}', '${color}', ${admin ? 1 : 0}, '${hashedPassword}')
     `;
     
     const result = await Query.myQueryWeb(query);
@@ -48,7 +48,7 @@ class UserManagement {
     
     // Si se proporciona contraseña, actualizarla también
     if (password && password.trim() !== '') {
-      //const hashedPassword = await bcrypt.hash(password, 10);
+      const hashedPassword = await bcrypt.hash(password, 10);
       query = `
         UPDATE users
         SET name = '${name}',
@@ -59,7 +59,7 @@ class UserManagement {
             email = '${email}',
             color = '${color}',
             admin = ${admin ? 1 : 0},
-            password = '${password}'
+            password = '${hashedPassword}'
         WHERE id = ${id}
       `;
     } else {
@@ -122,11 +122,14 @@ class UserManagement {
    * @returns {Array} Lista de usuarios
    */
   static async findAll(txtSearch) {
-    const query = "SELECT id, name, surname, secondSurname, phone, movil, email, color, admin "
-    query = query + "where name like '%" + txtSearch + "%' or surname like '%" + txtSearch + "%' or secondSurname like '%" + txtSearch + "%' or phone like '%" + txtSearch + "%' or movil like '%" + txtSearch + "%' or email like '%" + txtSearch + "%'  ";
-    query = query + "FROM users ORDER BY id DESC";
+    let query = "SELECT id, name, surname, secondSurname, phone, movil, email, color, admin FROM users ";
+    if (txtSearch && txtSearch.trim() !== '') {
+      const s = txtSearch.replace(/'/g, "''");
+      query += "WHERE name LIKE '%" + s + "%' OR surname LIKE '%" + s + "%' OR secondSurname LIKE '%" + s + "%' OR phone LIKE '%" + s + "%' OR movil LIKE '%" + s + "%' OR email LIKE '%" + s + "%' ";
+    }
+    query += "ORDER BY id DESC";
     const result = await Query.myQueryWeb(query);
-    
+
     return result.recordset || [];
   }
 
